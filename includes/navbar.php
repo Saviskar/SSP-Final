@@ -4,7 +4,7 @@
         <div class="flex justify-between items-center h-16">
             <!-- Logo -->
             <div class="flex items-center">
-                <a href="landing.html" class="flex items-center text-xl font-bold text-gray-800">
+                <a href="landing.php" class="flex items-center text-xl font-bold text-gray-800">
                     <span class="text-red-500 mr-2">◆</span>
                     Pet Haven
                 </a>

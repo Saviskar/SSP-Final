@@ -154,4 +154,3 @@ function handleAddProduct($db, &$response) {
     $response['message'] = "Product added successfully!";
     $response['data'] = ['productId' => $productId];
 }
-?>

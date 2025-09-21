@@ -6,7 +6,7 @@
     <nav class="flex text-sm overflow-x-auto whitespace-nowrap scrollbar-hide">
         <a href="landing.html" class="text-red-500 hover:text-red-600 flex-shrink-0">Home</a>
         <span class="mx-2 text-gray-500 flex-shrink-0">/</span>
-        <span class="text-gray-900 flex-shrink-0">All Products</span>
+        <a href="allproducts.php" class="text-gray-900 flex-shrink-0">All Products</span>
     </nav>
 </div>
 

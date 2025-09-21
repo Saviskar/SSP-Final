@@ -4,7 +4,7 @@
 <!-- Breadcrumb -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <nav class="flex text-sm overflow-x-auto whitespace-nowrap scrollbar-hide">
-        <a href="landing.html" class="text-red-500 hover:text-red-600 flex-shrink-0">Home</a>
+        <a href="landing.php" class="text-red-500 hover:text-red-600 flex-shrink-0">Home</a>
         <span class="mx-2 text-gray-500 flex-shrink-0">/</span>
         <a href="allproducts.php" class="text-gray-900 flex-shrink-0">All Products</a>
     </nav>

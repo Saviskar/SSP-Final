@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Haven - Shopping Cart</title>
+    <link href="../assets/css/tailwind.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> 
+</head>
+<body class="bg-white">
+
+<!-- Navbar -->
+<header class="bg-white shadow-lg relative z-50">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="landing.html" class="flex items-center text-xl font-bold text-gray-800">
+                    <span class="text-red-500 mr-2">◆</span>
+                    Pet Haven
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="allproducts.html" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Shop</a>
+                <a href="#" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Services</a>
+                <a href="#" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Community</a>
+            </div>
+
+            <!-- Desktop Search and Actions -->
+            <div class="hidden md:flex items-center space-x-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search" class="w-48 pl-4 pr-10 py-2 border-2 border-gray-200 rounded-full focus:border-red-500 outline-none transition-colors">
+                    <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-red-500">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                </div>
+                <a href="cart.html" class="relative text-red-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h8.5" />
+                    </svg>
+                    <span class="cart-count absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </a>
+                <div class="auth-required">
+                    <span class="user-name text-gray-600 text-sm"></span>
+                    <button class="ml-2 text-gray-600 hover:text-red-500 transition-colors" onclick="logout()">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile hamburger menu button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 hover:text-red-500 focus:outline-none focus:text-red-500 transition-colors">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-4 py-4 space-y-4 border-t">
+                <a href="allproducts.html" class="block text-gray-700 hover:text-red-500 font-medium py-2 transition-colors">Shop</a>
+                <a href="#" class="block text-gray-700 hover:text-red-500 font-medium py-2 transition-colors">Services</a>
+                <a href="#" class="block text-gray-700 hover:text-red-500 font-medium py-2 transition-colors">Community</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Shopping Cart</h1>
+    
+    <!-- Cart Content -->
+    <div id="cart-content">
+        <!-- Loading State -->
+        <div id="cart-loading" class="flex items-center justify-center py-12">
+            <div class="text-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-500 mx-auto mb-4"></div>
+                <p class="text-gray-500">Loading your cart...</p>
+            </div>
+        </div>
+
+        <!-- Empty Cart State -->
+        <div id="empty-cart" class="text-center py-12 hidden">
+            <svg class="w-24 h-24 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h8.5" />
+            </svg>
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">Your cart is empty</h2>
+            <p class="text-gray-500 mb-6">Looks like you haven't added any items to your cart yet.</p>
+            <a href="allproducts.html" class="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                Continue Shopping
+            </a>
+        </div>
+
+        <!-- Cart Items -->
+        <div id="cart-items" class="hidden">
+            <!-- Cart Table -->
+            <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm mb-8">
+                <!-- Desktop Table Header -->
+                <div class="hidden md:grid md:grid-cols-6 bg-gray-50 px-6 py-4 font-semibold text-gray-700 border-b border-gray-200">
+                    <div class="col-span-3">Product</div>
+                    <div class="col-span-1 text-center">Quantity</div>
+                    <div class="col-span-1 text-center">Total</div>
+                    <div class="col-span-1"></div>
+                </div>
+
+                <!-- Cart Items Container -->
+                <div id="cart-items-container">
+                    <!-- Items will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <!-- Continue Shopping -->
+                    <a href="allproducts.html" class="inline-flex items-center text-red-500 hover:text-red-600 font-medium">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Continue Shopping
+                    </a>
+                </div>
+
+                <div>
+                    <!-- Cart Summary -->
+                    <div id="cart-summary">
+                        <!-- Summary will be loaded dynamically -->
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 mt-6">
+                        <button id="clear-cart" class="flex-1 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium rounded-lg transition-colors">
+                            Clear Cart
+                        </button>
+                        <a href="checkout.html" class="flex-1 text-center px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg transition-colors">
+                            Checkout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+// Load cart when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadCartPage();
+});
+
+async function loadCartPage() {
+    const loadingEl = document.getElementById('cart-loading');
+    const emptyCartEl = document.getElementById('empty-cart');
+    const cartItemsEl = document.getElementById('cart-items');
+    
+    try {
+        loadingEl.classList.remove('hidden');
+        emptyCartEl.classList.add('hidden');
+        cartItemsEl.classList.add('hidden');
+        
+        if (!window.petHaven.currentUser) {
+            // Check auth status first
+            await window.petHaven.checkAuthStatus();
+        }
+        
+        if (!window.petHaven.currentUser) {
+            // Redirect to login if not authenticated
+            window.location.href = 'login.html';
+            return;
+        }
+        
+        await window.petHaven.loadCart();
+        
+        // Check if cart is empty after loading
+        const cartContainer = document.getElementById('cart-items-container');
+        if (!cartContainer.children.length) {
+            loadingEl.classList.add('hidden');
+            emptyCartEl.classList.remove('hidden');
+        } else {
+            loadingEl.classList.add('hidden');
+            cartItemsEl.classList.remove('hidden');
+        }
+        
+    } catch (error) {
+        console.error('Error loading cart:', error);
+        loadingEl.classList.add('hidden');
+        emptyCartEl.classList.remove('hidden');
+        window.petHaven.showMessage('Failed to load cart', 'error');
+    }
+}
+
+// Clear cart functionality
+document.getElementById('clear-cart').addEventListener('click', async function() {
+    if (!confirm('Are you sure you want to clear your cart? This action cannot be undone.')) {
+        return;
+    }
+    
+    try {
+        const response = await fetch('../process/cart.php', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ clearAll: true })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            window.petHaven.showMessage('Cart cleared successfully', 'success');
+            loadCartPage(); // Reload the cart page
+        } else {
+            window.petHaven.showMessage(result.message, 'error');
+        }
+    } catch (error) {
+        window.petHaven.showMessage('Failed to clear cart', 'error');
+        console.error('Clear cart error:', error);
+    }
+});
+
+// Mobile menu toggle
+document.getElementById('mobile-menu-button').addEventListener('click', function() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+});
+
+// Logout function
+async function logout() {
+    try {
+        const response = await fetch('../process/logout.php');
+        const result = await response.json();
+        
+        if (result.success) {
+            window.petHaven.showMessage('Logged out successfully', 'success');
+            setTimeout(() => {
+                window.location.href = 'landing.html';
+            }, 1000);
+        }
+    } catch (error) {
+        console.error('Logout error:', error);
+    }
+}
+</script>
+</body>
+</html>

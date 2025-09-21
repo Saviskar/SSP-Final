@@ -172,36 +172,41 @@ class PetHaven {
     }
 
     displayProducts(products) {
-        const container = document.querySelector('#products-container');
-        if (!container) return;
-        
-        container.innerHTML = products.map(product => `
-            <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow" data-product-id="${product.ProductID}">
-                <div class="aspect-square bg-gray-100 flex items-center justify-center relative">
-                    ${product.ImageURL ? 
-                        `<img src="${product.ImageURL}" alt="${product.ProductName}" class="w-full h-full object-cover">` :
-                        `<div class="w-16 h-16 bg-gray-400 rounded-full"></div>`
+    const container = document.querySelector('#products-container');
+    if (!container) return;
+
+    container.innerHTML = products.map(product => `
+        <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+            <a href="product.html?id=${product.ProductID}" class="block group">
+                <div class="relative h-48 bg-gray-100">
+                    ${product.ImageURL
+                        ? `<img src="${product.ImageURL}" alt="${product.ProductName}" class="w-full h-full object-cover">`
+                        : `<div class="w-16 h-16 bg-gray-400 rounded-full"></div>`
                     }
-                    ${product.DiscountPercentage > 0 ? 
-                        `<span class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">${product.DiscountPercentage}% OFF</span>` : 
-                        ''
+                    ${product.DiscountPercentage > 0
+                        ? `<span class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 rounded text-xs font-bold">${product.DiscountPercentage}% OFF</span>`
+                        : ``
                     }
                 </div>
                 <div class="p-4">
-                    <h3 class="font-medium text-gray-900 mb-2">${product.ProductName}</h3>
+                    <h3 class="font-medium text-gray-900 mb-2 group-hover:underline">
+                        ${product.ProductName}
+                    </h3>
                     <div class="flex items-center justify-between">
                         <div class="flex flex-col">
-                            ${product.DiscountPercentage > 0 ? 
-                                `<span class="text-sm text-gray-500 line-through">$${product.Price}</span>
-                                 <span class="text-lg font-semibold text-red-600">$${product.DiscountedPrice}</span>` :
-                                `<span class="text-lg font-semibold text-gray-900">$${product.Price}</span>`
+                            ${product.DiscountPercentage > 0
+                                ? `<span class="text-sm text-gray-500 line-through">$${product.Price}</span>
+                                   <span class="text-lg font-semibold text-red-600">$${product.DiscountedPrice}</span>`
+                                : `<span class="text-lg font-semibold text-gray-900">$${product.Price}</span>`
                             }
                         </div>
-                        <button class="add-to-cart-btn bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-colors text-sm" 
-                                data-product-id="${product.ProductID}" 
-                                data-product-name="${product.ProductName}"
-                                data-product-price="${product.DiscountedPrice || product.Price}"
-                                ${product.Stock <= 0 ? 'disabled' : ''}>
+                        <button
+                            class="add-to-cart-btn bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-colors text-sm"
+                            data-product-id="${product.ProductID}"
+                            data-product-name="${product.ProductName}"
+                            data-product-price="${product.DiscountedPrice || product.Price}"
+                            ${product.Stock <= 0 ? 'disabled' : ''}
+                        >
                             ${product.Stock <= 0 ? 'Out of Stock' : 'Add to Cart'}
                         </button>
                     </div>
@@ -209,9 +214,11 @@ class PetHaven {
                         Stock: ${product.Stock} | ${product.CategoryName}
                     </div>
                 </div>
-            </div>
-        `).join('');
+            </a>
+        </div>
+    `).join('');
     }
+
 
     displayCategories(categories) {
         const container = document.querySelector('#categories-container');

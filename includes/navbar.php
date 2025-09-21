@@ -12,7 +12,7 @@
 
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center space-x-8">
-                <a href="allproducts.html" class="text-red-500 font-medium">Shop</a>
+                <a href="allproducts.php" class="text-red-500 font-medium">Shop</a>
                 <a href="#" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Services</a>
                 <a href="#" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Community</a>
             </div>

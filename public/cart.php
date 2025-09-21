@@ -22,7 +22,7 @@
             </svg>
             <h2 class="text-2xl font-bold text-gray-900 mb-2">Your cart is empty</h2>
             <p class="text-gray-500 mb-6">Looks like you haven't added any items to your cart yet.</p>
-            <a href="allproducts.html" class="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded-lg transition-colors">
+            <a href="allproducts.php" class="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded-lg transition-colors">
                 Continue Shopping
             </a>
         </div>

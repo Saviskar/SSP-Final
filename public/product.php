@@ -4,9 +4,9 @@
 <!-- Breadcrumb -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <nav class="flex text-sm overflow-x-auto whitespace-nowrap scrollbar-hide" id="breadcrumb">
-        <a href="landing.html" class="text-red-500 hover:text-red-600 flex-shrink-0">Home</a>
+        <a href="landing.php" class="text-red-500 hover:text-red-600 flex-shrink-0">Home</a>
         <span class="mx-2 text-gray-500 flex-shrink-0">/</span>
-        <a href="allproducts.html" class="text-red-500 hover:text-red-600 flex-shrink-0">Shop</a>
+        <a href="allproducts.php" class="text-red-500 hover:text-red-600 flex-shrink-0">Shop</a>
         <span class="mx-2 text-gray-500 flex-shrink-0">/</span>
         <span class="text-gray-900 flex-shrink-0" id="product-breadcrumb">Product</span>
     </nav>
@@ -29,7 +29,7 @@
         </svg>
         <h2 class="text-2xl font-bold text-gray-900 mb-2">Product not found</h2>
         <p class="text-gray-500 mb-6">The product you're looking for doesn't exist or has been removed.</p>
-        <a href="allproducts.html" class="inline-flex items-center px-6 py-3 bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition-colors">
+        <a href="allproducts.php" class="inline-flex items-center px-6 py-3 bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition-colors">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
@@ -387,7 +387,7 @@ async function handleAddToCart() {
     }
     if (!window.petHaven.currentUser) {
         window.petHaven.showMessage('Please log in to add items to cart', 'error');
-        setTimeout(() => { window.location.href = 'login.html'; }, 1500);
+        setTimeout(() => { window.location.href = 'login.php'; }, 1500);
         return;
     }
 
@@ -434,7 +434,7 @@ async function logout() {
         if (result.success) {
             window.petHaven.showMessage('Logged out successfully', 'success');
             setTimeout(() => {
-                window.location.href = 'landing.html';
+                window.location.href = 'landing.php';
             }, 1000);
         }
     } catch (error) {

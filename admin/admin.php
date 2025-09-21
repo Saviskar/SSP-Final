@@ -1,29 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Haven - Admin Panel</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom scrollbar for better mobile experience */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 3px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #a1a1a1;
-        }
-    </style>
-</head>
-<body class="bg-pink-100 min-h-screen">
+<?php require __DIR__ . '/../includes/admin_header.php'; ?>
+
     <!-- Header -->
     <header class="bg-pink-100 px-4 py-4 border-b border-pink-200">
         <div class="flex justify-between items-center">
@@ -268,7 +244,4 @@
         </div>
     </div>
 
-    <!-- Fixed Script Path -->
-    <script src="../assets/js/admin.js"></script>
-</body>
-</html>
+<?php require __DIR__ . '/../includes/admin_footer.php'; ?>

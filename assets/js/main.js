@@ -777,7 +777,6 @@ if (mobileBtn) {
   });
 }
 
-
 // Logout
 async function logout() {
     try {

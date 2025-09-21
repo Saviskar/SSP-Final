@@ -32,9 +32,11 @@ define('SECURITY_CONFIG', [
 
 // File Upload Configuration
 define('UPLOAD_CONFIG', [
-    'max_file_size' => 5 * 1024 * 1024, // 5MB
-    'allowed_extensions' => ['jpg', 'jpeg', 'png', 'gif'],
-    'upload_path' => '../assets/uploads/',
+    'max_file_size'       => 5 * 1024 * 1024, // 5MB
+    // allow modern formats you’re already using
+    'allowed_extensions'  => ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'], // [CHANGED]
+    // absolute filesystem path to /assets/uploads (robust across include locations)
+    'upload_path'         => dirname(__DIR__, 2) . '/assets/uploads',       // [CHANGED]
     'max_files_per_product' => 5
 ]);
 

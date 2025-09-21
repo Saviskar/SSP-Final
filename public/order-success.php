@@ -15,7 +15,7 @@
         <div class="flex justify-between items-center h-16">
             <!-- Logo -->
             <div class="flex items-center">
-                <a href="landing.html" class="flex items-center text-xl font-bold text-gray-800">
+                <a href="landing.php" class="flex items-center text-xl font-bold text-gray-800">
                     <span class="text-red-500 mr-2">◆</span>
                     Pet Haven
                 </a>
@@ -23,14 +23,14 @@
 
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center space-x-8">
-                <a href="allproducts.html" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Shop</a>
+                <a href="allproducts.php" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Shop</a>
                 <a href="#" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Services</a>
                 <a href="#" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Community</a>
             </div>
 
             <!-- User Actions -->
             <div class="hidden md:flex items-center space-x-4">
-                <a href="cart.html" class="relative text-gray-600 hover:text-red-500 transition-colors">
+                <a href="cart.php" class="relative text-gray-600 hover:text-red-500 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h8.5" />
                     </svg>
@@ -58,7 +58,7 @@
         <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="md:hidden hidden">
             <div class="px-4 py-4 space-y-4 border-t">
-                <a href="allproducts.html" class="block text-gray-700 hover:text-red-500 font-medium py-2 transition-colors">Shop</a>
+                <a href="allproducts.php" class="block text-gray-700 hover:text-red-500 font-medium py-2 transition-colors">Shop</a>
                 <a href="#" class="block text-gray-700 hover:text-red-500 font-medium py-2 transition-colors">Services</a>
                 <a href="#" class="block text-gray-700 hover:text-red-500 font-medium py-2 transition-colors">Community</a>
             </div>
@@ -147,13 +147,13 @@
 
         <!-- Action Buttons -->
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="allproducts.html" class="inline-flex items-center justify-center px-6 py-3 border border-red-500 text-red-500 font-medium rounded-lg hover:bg-red-50 transition-colors">
+            <a href="allproducts.php" class="inline-flex items-center justify-center px-6 py-3 border border-red-500 text-red-500 font-medium rounded-lg hover:bg-red-50 transition-colors">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h8.5" />
                 </svg>
                 Continue Shopping
             </a>
-            <a href="orders.html" class="inline-flex items-center justify-center px-6 py-3 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition-colors">
+            <a href="orders.php" class="inline-flex items-center justify-center px-6 py-3 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition-colors">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
@@ -188,7 +188,7 @@ async function loadOrderDetails(orderId) {
         }
         
         if (!window.petHaven.currentUser) {
-            window.location.href = 'login.html';
+            window.location.href = 'login.php';
             return;
         }
         
@@ -262,7 +262,7 @@ async function logout() {
         if (result.success) {
             window.petHaven.showMessage('Logged out successfully', 'success');
             setTimeout(() => {
-                window.location.href = 'landing.html';
+                window.location.href = 'landing.php';
             }, 1000);
         }
     } catch (error) {

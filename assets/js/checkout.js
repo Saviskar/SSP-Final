@@ -146,7 +146,7 @@ document.getElementById('checkout-form').addEventListener('submit', async functi
             
             // Redirect to a success page or order confirmation
             setTimeout(() => {
-                window.location.href = `order-success.html?orderId=${result.data.orderId}`;
+                window.location.href = `order-success.php?orderId=${result.data.orderId}`;
             }, 2000);
         } else {
             window.petHaven.showMessage(result.message, 'error');

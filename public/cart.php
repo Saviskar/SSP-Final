@@ -68,7 +68,7 @@
                         <button id="clear-cart" class="flex-1 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium rounded-lg transition-colors">
                             Clear Cart
                         </button>
-                        <a href="checkout.html" class="flex-1 text-center px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg transition-colors">
+                        <a href="checkout.php" class="flex-1 text-center px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg transition-colors">
                             Checkout
                         </a>
                     </div>

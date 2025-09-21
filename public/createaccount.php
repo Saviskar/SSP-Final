@@ -1,61 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Haven - Create Account</title>
-    <link href="../assets/css/tailwind.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body class="bg-white">
-
-<!-- Navbar -->
-<header class="bg-white shadow-lg relative z-50">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <!-- Logo -->
-            <div class="flex items-center">
-                <a href="landing.html" class="flex items-center text-xl font-bold text-gray-800">
-                    <span class="text-red-500 mr-2">◆</span>
-                    Pet Haven
-                </a>
-            </div>
-
-            <!-- Desktop Navigation -->
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="allproducts.html" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Shop</a>
-                <a href="#" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Services</a>
-                <a href="#" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Community</a>
-            </div>
-
-            <!-- Desktop Sign In -->
-            <div class="hidden md:flex items-center">
-                <a href="login.html" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Sign in</a>
-            </div>
-
-            <!-- Mobile hamburger menu button -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-700 hover:text-red-500 focus:outline-none focus:text-red-500 transition-colors">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="md:hidden hidden">
-            <div class="px-4 py-4 space-y-4 border-t">
-                <a href="allproducts.html" class="block text-gray-700 hover:text-red-500 font-medium py-2 transition-colors">Shop</a>
-                <a href="#" class="block text-gray-700 hover:text-red-500 font-medium transition-colors">Services</a>
-                <a href="#" class="block text-gray-700 hover:text-red-500 font-medium transition-colors">Community</a>
-                <div class="pt-4 border-t border-gray-200">
-                    <a href="login.html" class="block text-gray-700 hover:text-red-500 font-medium py-2 transition-colors">Sign in</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-</header>
+<?php require __DIR__ . '/../includes/header.php'; ?>
+<?php require __DIR__ . '/../includes/navbar.php'; ?>
 
 <!-- Main Content -->
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -114,7 +58,7 @@
             <div class="pt-2">
                 <p class="text-gray-600">
                     Already have an account? 
-                    <a href="login.html" class="text-red-500 hover:text-red-600 font-medium">Sign in</a>
+                    <a href="login.php" class="text-red-500 hover:text-red-600 font-medium">Sign in</a>
                 </p>
             </div>
         </form>

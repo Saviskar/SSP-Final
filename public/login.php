@@ -41,7 +41,7 @@
             <div class="text-center pt-2">
                 <p class="text-gray-600 text-sm">
                     New to Pet Haven? 
-                    <a href="createaccount.html" class="text-red-500 hover:text-red-600 font-medium">Create an account</a>
+                    <a href="createaccount.php" class="text-red-500 hover:text-red-600 font-medium">Create an account</a>
                 </p>
             </div>
         </form>

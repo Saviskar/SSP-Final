@@ -1,35 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Haven - Checkout</title>
-    <link href="../assets/css/tailwind.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body class="bg-white">
-
-<!-- Navbar -->
-<header class="bg-white shadow-lg relative z-50">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <!-- Logo -->
-            <div class="flex items-center">
-                <a href="landing.html" class="flex items-center text-xl font-bold text-gray-800">
-                    <span class="text-red-500 mr-2">◆</span>
-                    Pet Haven
-                </a>
-            </div>
-
-            <!-- Desktop Navigation -->
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="allproducts.html" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Shop</a>
-                <a href="#" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Services</a>
-                <a href="#" class="text-gray-700 hover:text-red-500 font-medium transition-colors">Community</a>
-            </div>
-        </div>
-    </nav>
-</header>
+<?php require __DIR__ . '/../includes/header.php'; ?>
+<?php require __DIR__ . '/../includes/navbar.php'; ?>
 
 <!-- Breadcrumb -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -117,8 +87,9 @@
 </main>
 
 <script src="../assets/js/main.js"></script>
-<script>
-let cartData = null;
+<script src="../assets/js/checkout.js"></script>
+
+<!-- let cartData = null;
 
 // Load checkout data when page loads
 document.addEventListener('DOMContentLoaded', function() {
@@ -280,8 +251,7 @@ document.getElementById('checkout-form').addEventListener('submit', async functi
         submitBtn.disabled = false;
         submitText.textContent = originalText;
     }
-});
-</script>
+}); -->
 
 </body>
 </html>

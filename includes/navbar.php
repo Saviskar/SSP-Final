@@ -28,7 +28,7 @@
                         </svg>
                     </button>
                 </div>
-                <a href="cart.html" class="relative text-gray-600 hover:text-red-500 transition-colors">
+                <a href="cart.php" class="relative text-gray-600 hover:text-red-500 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h8.5" />
                     </svg>
@@ -42,7 +42,7 @@
                     </button>
                 </div>
                 <div class="guest-only">
-                    <a href="login.html" class="text-gray-600 hover:text-red-500 transition-colors">
+                    <a href="login.php" class="text-gray-600 hover:text-red-500 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
@@ -63,7 +63,7 @@
         <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="md:hidden hidden">
             <div class="px-4 py-4 space-y-4 border-t">
-                <a href="allproducts.html" class="block text-red-500 font-medium py-2">Shop</a>
+                <a href="allproducts.php" class="block text-red-500 font-medium py-2">Shop</a>
                 <a href="#" class="block text-gray-700 hover:text-red-500 font-medium py-2 transition-colors">Services</a>
                 <a href="#" class="block text-gray-700 hover:text-red-500 font-medium py-2 transition-colors">Community</a>
 
@@ -77,14 +77,14 @@
 
                 <!-- Mobile Actions -->
                 <div class="flex space-x-4 pt-2">
-                    <a href="cart.html" class="flex items-center space-x-2 text-gray-600 hover:text-red-500 transition-colors">
+                    <a href="cart.php" class="flex items-center space-x-2 text-gray-600 hover:text-red-500 transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h8.5" />
                         </svg>
                         <span>Cart</span>
                     </a>
                     <div class="guest-only">
-                        <a href="login.html" class="flex items-center space-x-2 text-gray-600 hover:text-red-500 transition-colors">
+                        <a href="login.php" class="flex items-center space-x-2 text-gray-600 hover:text-red-500 transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>

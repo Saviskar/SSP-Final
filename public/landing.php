@@ -15,7 +15,7 @@
             <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl leading-relaxed">
                 Your one-stop shop for all your pet's needs. Explore our wide range of products and services.
             </p>
-            <a href="allproducts.html" class="bg-red-500 hover:bg-red-600 text-white font-bold px-8 py-3 rounded-lg transition-colors text-lg">
+            <a href="allproducts.php" class="bg-red-500 hover:bg-red-600 text-white font-bold px-8 py-3 rounded-lg transition-colors text-lg">
                 Shop Now
             </a>
         </div>

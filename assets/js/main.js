@@ -786,7 +786,8 @@ async function logout() {
         if (result.success) {
             window.petHaven.showMessage('Logged out successfully', 'success');
             setTimeout(() => {
-                window.location.href = 'landing.html';
+                // backend tells us where to go
+                window.location.href = result.redirect || '/ssp/public/landing.php';
             }, 1000);
         }
     } catch (error) {

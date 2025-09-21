@@ -3,7 +3,7 @@ session_start();
 require_once '../src/includes/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../public/login.html');
+    header('Location: ../public/login.php');
     exit();
 }
 
@@ -50,7 +50,7 @@ try {
     
     // Redirect based on role
     if ($user['RoleName'] === 'ADMIN') {
-        $response['redirect'] = '../admin/allproductsadmin.html';
+        $response['redirect'] = '../admin/admin.php';
     } else {
         $response['redirect'] = '../public/allproducts.php';
     }

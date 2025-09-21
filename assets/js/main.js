@@ -760,3 +760,30 @@ async function deletePromotion(productId) {
         console.error('Delete promotion error:', error);
     }
 }
+
+// Mobile menu toggle (safe)
+const mobileBtn = document.getElementById('mobile-menu-button');
+if (mobileBtn) {
+  mobileBtn.addEventListener('click', function () {
+    const menu = document.getElementById('mobile-menu');
+    if (menu) menu.classList.toggle('hidden');
+  });
+}
+
+
+// Logout
+async function logout() {
+    try {
+        const response = await fetch('../process/logout.php');
+        const result = await response.json();
+        
+        if (result.success) {
+            window.petHaven.showMessage('Logged out successfully', 'success');
+            setTimeout(() => {
+                window.location.href = 'landing.html';
+            }, 1000);
+        }
+    } catch (error) {
+        console.error('Logout error:', error);
+    }
+}

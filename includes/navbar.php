@@ -96,3 +96,27 @@
         </div>
     </nav>
 </header>
+
+<style>
+/* Add some demo functionality to show the cart count */
+.cart-count {
+    display: flex !important;
+}
+</style>
+
+<script>
+// Demo script to show cart count functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const cartCount = document.querySelector('.cart-count');
+    cartCount.textContent = '3'; // Demo count
+    cartCount.classList.remove('hidden');
+    
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+    });
+});
+</script>

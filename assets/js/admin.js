@@ -430,9 +430,71 @@ class AdminPanel {
     }
 
     async editPromotion(promotionId) {
-        // For now, just show an alert - you can implement edit functionality later
-        alert(`Edit promotion functionality for ID ${promotionId} would be implemented here`);
+    try {
+        // Find current promotion row to prefill current values
+        const cur = (this.promotions || []).find(p => Number(p.PromotionID) === Number(promotionId));
+
+        const newDiscountStr = prompt(
+            'New discount % (0–90):',
+            cur ? String(cur.Discount) : ''
+        );
+        if (newDiscountStr === null) return; // cancelled
+
+        const newDiscount = Number(newDiscountStr);
+        if (Number.isNaN(newDiscount) || newDiscount < 0 || newDiscount > 90) {
+            alert('Please enter a discount between 0 and 90.');
+            return;
+        }
+
+        // Optional: allow changing the product link too (leave empty to keep current)
+        let payload = { promotionId, discount: newDiscount };
+
+        const changeProduct = confirm('Do you want to change the Product ID linked to this promotion?');
+        if (changeProduct) {
+            const newPidStr = prompt(
+                `Enter new Product ID (current: ${cur ? cur.ProductID : 'unknown'})\nLeave empty to keep current.`,
+                ''
+            );
+            if (newPidStr !== null && newPidStr.trim() !== '') {
+                const newPid = Number(newPidStr);
+                if (Number.isNaN(newPid) || newPid <= 0) {
+                    alert('Invalid Product ID.');
+                    return;
+                }
+                payload.productId = newPid;
+            }
+        }
+
+        // Try JSON PUT first
+        let res = await fetch('../process/admin_promotions.php', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        // Fallback for hosts that block PUT: POST with _method=PUT (handled server-side)
+        if (!res.ok) {
+            res = await fetch('../process/admin_promotions.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ _method: 'PUT', ...Object.fromEntries(Object.entries(payload).map(([k,v]) => [k, String(v)])) })
+            });
+        }
+
+        const out = await res.json().catch(() => ({}));
+        if (!res.ok || out.success === false) {
+            const msg = out.error || out.message || `HTTP ${res.status}`;
+            throw new Error(msg);
+        }
+
+        alert('Promotion updated ✅');
+        await this.loadPromotions();
+        this.renderPromotions();
+    } catch (e) {
+        console.error(e);
+        alert('Error editing promotion: ' + e.message);
     }
+}
 
     async deletePromotion(promotionId) {
         if (!confirm('Are you sure you want to delete this promotion?')) return;

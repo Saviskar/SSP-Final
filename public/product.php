@@ -40,8 +40,8 @@
     <!-- Product Details -->
     <div id="product-details" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
         <!-- Product Image -->
-        <div class="bg-green-100 rounded-2xl p-8 lg:p-12 flex flex-col justify-center items-center min-h-96 relative">
-            <div id="product-image-container" class="flex items-center justify-center w-full max-w-md">
+        <div class="rounded-2xl p-8 lg:p-12 flex flex-col justify-center items-center min-h-96 relative">
+            <div id="product-image-container" class="flex items-center justify-center w-full h-full">
                 <!-- Default rope toy illustration -->
                 <div class="flex items-center justify-center w-full max-w-md">
                     <!-- Left Tassel -->
@@ -67,11 +67,7 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Watermark -->
-            <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-gray-600 text-sm tracking-widest opacity-70">
-                NINUNALD NAGLTA LEFE GLE WORK
-            </div>
+
         </div>
 
         <!-- Product Details -->
@@ -331,8 +327,8 @@ function displayProduct(product) {
         const imageContainer = document.getElementById('product-image-container');
         imageContainer.innerHTML = `
             <img src="${product.ImageURL}" alt="${product.ProductName}" 
-                 class="w-full h-full object-cover rounded-lg max-w-md max-h-80"
-                 onerror="this.parentNode.innerHTML = getDefaultProductIllustration();">
+            class="w-full h-full object-contain rounded-lg"
+            onerror="this.parentNode.innerHTML = getDefaultProductIllustration();">
         `;
     }
 

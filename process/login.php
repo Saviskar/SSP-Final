@@ -52,7 +52,7 @@ try {
     if ($user['RoleName'] === 'ADMIN') {
         $response['redirect'] = '../admin/admin.php';
     } else {
-        $response['redirect'] = '../public/allproducts.php';
+        $response['redirect'] = '../public/landing.php';
     }
     
 } catch (Exception $e) {

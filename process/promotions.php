@@ -38,7 +38,7 @@ try {
             break;
             
         case 'DELETE':
-            // Admin only
+            // Admn only
             if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'ADMIN') {
                 $response['message'] = 'Unauthorized access';
                 http_response_code(401);

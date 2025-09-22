@@ -2,13 +2,13 @@
    Image maps (edit paths as you like)
 ------------------------------ */
 const categoryImages = {
-  'Dog Food':        '../assets/img/categories/dog-food.jpg',
-  'Cat Food':        '../assets/img/categories/cat-food.jpg',
-  'Cat Litter':      '../assets/img/categories/cat-litter.jpg',
-  'Dog Treats':      '../assets/img/categories/dog-treats.jpg',
-  'Accessories':     '../assets/img/categories/accessories.jpg',
-  'Grooming':        '../assets/img/categories/grooming.jpg',
-  'Shampoos':        '../assets/img/categories/shampoos.jpg'
+  'Dog Food':        '/assets/img/categories/dog-food.png',
+  'Cat Food':        '/assets/img/categories/cat-food.jpg',
+  'Cat Litter':      '/assets/img/categories/cat-litter.jpg',
+  'Dog Treats':      '/assets/img/categories/dog-treats.jpg',
+  'Accessories':     '/assets/img/categories/accessories.jpg',
+  'Grooming':        '/assets/img/categories/grooming.jpg',
+  'Shampoos':        '/assets/img/categories/shampoos.jpg'
 };
 
 // Optional product-level images for promos (used if backend doesn’t provide ImageUrl)
@@ -66,15 +66,18 @@ async function loadCategories() {
 
 function displayCategories(categories) {
   const container = document.getElementById('categories-section');
+  if (!container) return;
+
   container.innerHTML = categories.map(category => {
     const name = category.CategoryName || category.name || 'Category';
-    const imgSrc = category.ImageUrl || category.image_url || categoryImages[name] || FALLBACK_IMG;
+
+    // Accept ImageURL, ImageUrl, image_url
+    const apiImg = category.ImageURL ?? category.ImageUrl ?? category.image_url ?? null;
+    const imgSrc = apiImg || categoryImages[name] || FALLBACK_IMG;
+
     return `
-      <div
-        class="category-item bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow p-4 text-center group cursor-pointer"
-        data-category="${name}"
-        title="${name}"
-      >
+      <div class="category-item bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow p-4 text-center group cursor-pointer"
+           data-category="${name}" title="${name}">
         <div class="w-full h-40 md:h-44 rounded-xl overflow-hidden mb-3">
           <img
             src="${imgSrc}"
@@ -82,6 +85,7 @@ function displayCategories(categories) {
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
             decoding="async"
+            onerror="this.onerror=null;this.src='${FALLBACK_IMG}'"
           />
         </div>
         <h3 class="font-semibold text-gray-800 group-hover:text-red-500 transition-colors">${name}</h3>
@@ -89,6 +93,7 @@ function displayCategories(categories) {
     `;
   }).join('');
 }
+
 
 /* ------------------------------
    API: Promotions
@@ -150,9 +155,8 @@ function displayPromotionalProducts(promotions) {
   }).join('');
 }
 
-/* ------------------------------
-   Static fallback promotions
------------------------------- */
+
+  //  Static fallback promotions
 function displayStaticPromotions() {
   const container = document.getElementById('promotions-section');
   const staticPromotions = [
@@ -189,9 +193,7 @@ function displayStaticPromotions() {
   }).join('');
 }
 
-/* ------------------------------
-   Logout (unchanged except a tiny optional chaining to avoid errors)
------------------------------- */
+//  Logout (unchanged except a tiny optional chaining to avoid errors)
 async function logout() {
   try {
     const response = await fetch('../process/logout.php');

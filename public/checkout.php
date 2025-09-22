@@ -159,6 +159,13 @@ function old($key, $fallback = '') {
 
 <script src="../assets/js/main.js"></script>
 <script src="../assets/js/checkout.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var btn = document.getElementById('mobile-menu-button');
+  if (btn && btn.type !== 'button') btn.type = 'button';
+});
+</script>
+
 
 </body>
 </html>

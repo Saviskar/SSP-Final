@@ -176,46 +176,54 @@ class PetHaven {
     if (!container) return;
 
     container.innerHTML = products.map(product => `
-        <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-            <a href="product.php?id=${product.ProductID}" class="block group">
-                <div class="relative h-48 bg-gray-100">
-                    ${product.ImageURL
-                        ? `<img src="${product.ImageURL}" alt="${product.ProductName}" class="w-full h-full object-cover">`
-                        : `<div class="w-16 h-16 bg-gray-400 rounded-full"></div>`
-                    }
-                    ${product.DiscountPercentage > 0
-                        ? `<span class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 rounded text-xs font-bold">${product.DiscountPercentage}% OFF</span>`
-                        : ``
-                    }
-                </div>
-                <div class="p-4">
-                    <h3 class="font-medium text-gray-900 mb-2 group-hover:underline">
-                        ${product.ProductName}
-                    </h3>
-                    <div class="flex items-center justify-between">
-                        <div class="flex flex-col">
-                            ${product.DiscountPercentage > 0
-                                ? `<span class="text-sm text-gray-500 line-through">$${product.Price}</span>
-                                   <span class="text-lg font-semibold text-red-600">$${product.DiscountedPrice}</span>`
-                                : `<span class="text-lg font-semibold text-gray-900">$${product.Price}</span>`
-                            }
-                        </div>
-                        <button
-                            class="add-to-cart-btn bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-colors text-sm"
-                            data-product-id="${product.ProductID}"
-                            data-product-name="${product.ProductName}"
-                            data-product-price="${product.DiscountedPrice || product.Price}"
-                            ${product.Stock <= 0 ? 'disabled' : ''}
-                        >
-                            ${product.Stock <= 0 ? 'Out of Stock' : 'Add to Cart'}
-                        </button>
-                    </div>
-                    <div class="text-xs text-gray-500 mt-1">
-                        Stock: ${product.Stock} | ${product.CategoryName}
-                    </div>
-                </div>
-            </a>
+    <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+        <div class="block group">
+        <a href="product.php?id=${product.ProductID}">
+            <div class="relative h-48 bg-gray-100">
+            ${product.ImageURL
+                ? `<img src="${product.ImageURL}" alt="${product.ProductName}" class="w-full h-full object-cover">`
+                : `<div class="w-16 h-16 bg-gray-400 rounded-full"></div>`
+            }
+            ${product.DiscountPercentage > 0
+                ? `<span class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 rounded text-xs font-bold">${product.DiscountPercentage}% OFF</span>`
+                : ``
+            }
+            </div>
+            <div class="p-4">
+            <h3 class="font-medium text-gray-900 mb-2 group-hover:underline">
+                ${product.ProductName}
+            </h3>
+            </div>
+        </a>
+
+        <div class="px-4 pb-4">
+            <div class="flex items-center justify-between">
+            <div class="flex flex-col">
+                ${product.DiscountPercentage > 0
+                ? `<span class="text-sm text-gray-500 line-through">$${product.Price}</span>
+                    <span class="text-lg font-semibold text-red-600">$${product.DiscountedPrice}</span>`
+                : `<span class="text-lg font-semibold text-gray-900">$${product.Price}</span>`
+                }
+            </div>
+
+            <button
+                type="button"
+                class="add-to-cart-btn bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-colors text-sm"
+                data-product-id="${product.ProductID}"
+                data-product-name="${product.ProductName}"
+                data-product-price="${product.DiscountedPrice || product.Price}"
+                ${product.Stock <= 0 ? 'disabled' : ''}
+            >
+                ${product.Stock <= 0 ? 'Out of Stock' : 'Add to Cart'}
+            </button>
+            </div>
+
+            <div class="text-xs text-gray-500 mt-1">
+            Stock: ${product.Stock} | ${product.CategoryName}
+            </div>
         </div>
+        </div>
+    </div>
     `).join('');
     }
 

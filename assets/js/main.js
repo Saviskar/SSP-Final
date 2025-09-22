@@ -77,7 +77,7 @@ class PetHaven {
             if (result.success) {
                 this.showMessage('Registration successful! You can now log in.', 'success');
                 setTimeout(() => {
-                    window.location.href = 'login.html';
+                    window.location.href = 'login.php';
                 }, 2000);
             } else {
                 this.showMessage(result.message, 'error');
@@ -104,7 +104,7 @@ class PetHaven {
             if (result.success) {
                 this.showMessage('Login successful!', 'success');
                 setTimeout(() => {
-                    window.location.href = result.redirect || 'landing.html';
+                    window.location.href = result.redirect || 'landing.php';
                 }, 1000);
             } else {
                 this.showMessage(result.message, 'error');
@@ -177,7 +177,7 @@ class PetHaven {
 
     container.innerHTML = products.map(product => `
         <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-            <a href="product.html?id=${product.ProductID}" class="block group">
+            <a href="product.php?id=${product.ProductID}" class="block group">
                 <div class="relative h-48 bg-gray-100">
                     ${product.ImageURL
                         ? `<img src="${product.ImageURL}" alt="${product.ProductName}" class="w-full h-full object-cover">`
@@ -487,7 +487,7 @@ class PetHaven {
             if (result.success) {
                 this.showMessage('Order placed successfully!', 'success');
                 setTimeout(() => {
-                    window.location.href = 'order-confirmation.html?orderId=' + result.data.orderId;
+                    window.location.href = 'order-confirmation.php?orderId=' + result.data.orderId;
                 }, 2000);
             } else {
                 this.showMessage(result.message, 'error');

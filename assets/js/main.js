@@ -728,7 +728,7 @@ async function loadPromotions() {
     }
 }
 
-async editPromotion(promotionId) {
+    async function editPromotion(promotionId) {
     try {
         // Find current promotion row to prefill current values
         const cur = (this.promotions || []).find(p => Number(p.PromotionID) === Number(promotionId));

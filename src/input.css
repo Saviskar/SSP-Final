@@ -35,18 +35,6 @@
   font-display: swap;
 }
 
-/* Components */
-@layer components {
-  .btn {
-    @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium shadow-sm transition;
-  }
-  .btn-primary {
-    @apply btn bg-brand text-white hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-300;
-  }
-  .card { @apply rounded-2xl border border-gray-200 bg-white shadow-sm p-6; }
-  .form-input { @apply block w-full rounded-xl border-gray-300 focus:border-brand-500 focus:ring-brand-500; }
-}
-
 /* --- KEEP dynamic status colors used from JS (prevents purge) --- */
 @layer utilities {
   ._keep-bg-blue-500    { @apply bg-blue-500; }

@@ -3,8 +3,7 @@
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
-    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-sans: "Geist", "Inter", system-ui, sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-50: oklch(97.1% 0.013 17.38);
@@ -16,6 +15,7 @@
     --color-red-800: oklch(44.4% 0.177 26.899);
     --color-orange-500: oklch(70.5% 0.213 47.604);
     --color-yellow-100: oklch(97.3% 0.071 103.193);
+    --color-yellow-500: oklch(79.5% 0.184 86.047);
     --color-yellow-600: oklch(68.1% 0.162 75.834);
     --color-yellow-800: oklch(47.6% 0.114 61.907);
     --color-green-100: oklch(96.2% 0.044 156.743);
@@ -70,12 +70,11 @@
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
-    --tracking-widest: 0.1em;
     --leading-relaxed: 1.625;
     --radius-md: 0.375rem;
     --radius-lg: 0.5rem;
-    --radius-xl: 0.75rem;
-    --radius-2xl: 1rem;
+    --radius-xl: 0.9rem;
+    --radius-2xl: 1.25rem;
     --radius-3xl: 1.5rem;
     --animate-spin: spin 1s linear infinite;
     --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -258,9 +257,6 @@
   .inset-y-0 {
     inset-block: calc(var(--spacing) * 0);
   }
-  .-top-1 {
-    top: calc(var(--spacing) * -1);
-  }
   .-top-2 {
     top: calc(var(--spacing) * -2);
   }
@@ -275,9 +271,6 @@
   }
   .top-4 {
     top: calc(var(--spacing) * 4);
-  }
-  .-right-1 {
-    right: calc(var(--spacing) * -1);
   }
   .-right-2 {
     right: calc(var(--spacing) * -2);
@@ -297,14 +290,8 @@
   .bottom-0 {
     bottom: calc(var(--spacing) * 0);
   }
-  .bottom-6 {
-    bottom: calc(var(--spacing) * 6);
-  }
   .left-0 {
     left: calc(var(--spacing) * 0);
-  }
-  .left-1\/2 {
-    left: calc(1/2 * 100%);
   }
   .left-2 {
     left: calc(var(--spacing) * 2);
@@ -471,9 +458,6 @@
   .h-full {
     height: 100%;
   }
-  .max-h-80 {
-    max-height: calc(var(--spacing) * 80);
-  }
   .max-h-\[90vh\] {
     max-height: 90vh;
   }
@@ -554,10 +538,6 @@
   }
   .flex-shrink-0 {
     flex-shrink: 0;
-  }
-  .-translate-x-1\/2 {
-    --tw-translate-x: calc(calc(1/2 * 100%) * -1);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .translate-x-0 {
     --tw-translate-x: calc(var(--spacing) * 0);
@@ -872,6 +852,9 @@
   .bg-yellow-100 {
     background-color: var(--color-yellow-100);
   }
+  .bg-yellow-500 {
+    background-color: var(--color-yellow-500);
+  }
   .object-contain {
     object-fit: contain;
   }
@@ -1012,10 +995,6 @@
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
   }
-  .tracking-widest {
-    --tw-tracking: var(--tracking-widest);
-    letter-spacing: var(--tracking-widest);
-  }
   .whitespace-nowrap {
     white-space: nowrap;
   }
@@ -1092,9 +1071,6 @@
     &::placeholder {
       color: var(--color-gray-400);
     }
-  }
-  .opacity-70 {
-    opacity: 70%;
   }
   .opacity-80 {
     opacity: 80%;
@@ -1348,6 +1324,11 @@
       display: inline;
     }
   }
+  .sm\:inline-block {
+    @media (width >= 40rem) {
+      display: inline-block;
+    }
+  }
   .sm\:grid-cols-2 {
     @media (width >= 40rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1528,6 +1509,40 @@
     }
   }
 }
+@font-face {
+  font-family: "Geist";
+  src: url("../fonts/Geist-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("../fonts/Geist-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@layer utilities {
+  ._keep-bg-blue-500 {
+    background-color: var(--color-blue-500);
+  }
+  ._keep-bg-green-500 {
+    background-color: var(--color-green-500);
+  }
+  ._keep-bg-red-500 {
+    background-color: var(--color-red-500);
+  }
+  ._keep-bg-yellow-500 {
+    background-color: var(--color-yellow-500);
+  }
+  ._keep-bg-orange-500 {
+    background-color: var(--color-orange-500);
+  }
+  ._keep-text-white {
+    color: var(--color-white);
+  }
+}
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;
@@ -1583,10 +1598,6 @@
   inherits: false;
 }
 @property --tw-font-weight {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-tracking {
   syntax: "*";
   inherits: false;
 }
@@ -1753,7 +1764,6 @@
       --tw-border-style: solid;
       --tw-leading: initial;
       --tw-font-weight: initial;
-      --tw-tracking: initial;
       --tw-shadow: 0 0 #0000;
       --tw-shadow-color: initial;
       --tw-shadow-alpha: 100%;

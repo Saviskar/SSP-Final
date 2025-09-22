@@ -1,1 +1,48 @@
 @import "tailwindcss";
+
+/* Extend theme directly in CSS */
+@theme {
+  --color-brand: #0E9F6E;   /* DEFAULT brand green → main button bg (.btn-primary) */
+  --color-brand-50: #ECFDF5;   /* very light mint → badge backgrounds, subtle fills */
+  --color-brand-100: #D1FAE5;  /* light mint → potential card borders / backgrounds */
+  --color-brand-200: #A7F3D0;  /* soft mint → optional light accents */
+  --color-brand-300: #6EE7B7;  /* pastel mint → focus ring on .btn-primary */
+  --color-brand-400: #34D399;  /* medium teal-green → optional secondary accents */
+  --color-brand-500: #10B981;  /* vibrant emerald → form-input focus border & ring */
+  --color-brand-600: #059669;  /* darker emerald → hover bg for .btn-primary */
+  --color-brand-700: #047857;  /* strong green → suitable for text (text-brand-700) */
+  --color-brand-800: #065F46;  /* deep forest green → dark text/borders */
+  --color-brand-900: #064E3B;  /* almost black-green → headings or dark mode */
+
+  --font-sans: "Geist", "Inter", system-ui, sans-serif;
+  --radius-xl: 0.9rem;
+  --radius-2xl: 1.25rem;
+}
+
+/* Custom font */
+@font-face {
+  font-family: "Geist";
+  src: url("../fonts/Geist-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("../fonts/Geist-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Components */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium shadow-sm transition;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-300;
+  }
+  .card { @apply rounded-2xl border border-gray-200 bg-white shadow-sm p-6; }
+  .form-input { @apply block w-full rounded-xl border-gray-300 focus:border-brand-500 focus:ring-brand-500; }
+}

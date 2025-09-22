@@ -20,7 +20,7 @@ async function loadCartPage() {
         
         if (!window.petHaven.currentUser) {
             // Redirect to login if not authenticated
-            window.location.href = 'login.html';
+            window.location.href = 'login.php';
             return;
         }
         

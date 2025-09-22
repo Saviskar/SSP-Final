@@ -46,3 +46,13 @@
   .card { @apply rounded-2xl border border-gray-200 bg-white shadow-sm p-6; }
   .form-input { @apply block w-full rounded-xl border-gray-300 focus:border-brand-500 focus:ring-brand-500; }
 }
+
+/* --- KEEP dynamic status colors used from JS (prevents purge) --- */
+@layer utilities {
+  ._keep-bg-blue-500    { @apply bg-blue-500; }
+  ._keep-bg-green-500   { @apply bg-green-500; }
+  ._keep-bg-red-500     { @apply bg-red-500; }
+  ._keep-bg-yellow-500  { @apply bg-yellow-500; }
+  ._keep-bg-orange-500  { @apply bg-orange-500; }
+  ._keep-text-white     { @apply text-white; }
+}

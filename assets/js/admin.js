@@ -638,6 +638,98 @@ class AdminPanel {
             alert('Error creating promotion: ' + e.message);
         }
     }
+
+    async updateOrderStatus(orderId, newStatus) {
+    try {
+        // Try JSON PUT first
+        let res = await fetch('../process/admin_orders.php', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ orderId, status: newStatus })
+        });
+
+        // Fallback if host blocks PUT
+        if (!res.ok) {
+            res = await fetch('../process/admin_orders.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ _method: 'PUT', orderId: String(orderId), status: newStatus })
+            });
+        }
+
+        const out = await res.json().catch(() => ({}));
+        if (!res.ok || out.success === false) {
+            const msg = out.error || out.message || `HTTP ${res.status}`;
+            throw new Error(msg);
+        }
+
+        // Refresh UI
+        await this.loadOrders();
+        this.renderOrders();
+        alert('Order status updated ✅');
+    } catch (e) {
+        console.error(e);
+        alert('Error updating status: ' + e.message);
+    }
+}
+
+renderOrders() {
+    const tbody = document.getElementById('ordersTableBody');
+    if (!tbody) {
+        console.error('Orders table body not found');
+        return;
+    }
+
+    if (!Array.isArray(this.orders) || this.orders.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="6" class="p-4 text-center text-gray-500">No orders found</td>
+            </tr>
+        `;
+        return;
+    }
+
+    const opts = ['pending','processing','shipped','delivered','cancelled'];
+
+    tbody.innerHTML = this.orders.map(order => {
+        // (Optional) badge color helper if you still want a tiny badge next to the select
+        const statusClass = (() => {
+            switch ((order.Status || '').toLowerCase()) {
+                case 'shipped':    return 'bg-blue-500';
+                case 'delivered':  return 'bg-green-500';
+                case 'cancelled':  return 'bg-red-500';
+                case 'processing': return 'bg-yellow-500';
+                default:           return 'bg-orange-500';
+            }
+        })();
+
+        const optionsHtml = opts.map(s => 
+            `<option value="${s}" ${String(order.Status).toLowerCase() === s ? 'selected' : ''}>${s}</option>`
+        ).join('');
+
+        return `
+            <tr class="border-b hover:bg-gray-50">
+                <td class="p-4">${order.OrderID}</td>
+                <td class="p-4 text-red-400">${order.Customer || 'N/A'}</td>
+                <td class="p-4 text-gray-600">${order.OrderPlacedDate || 'N/A'}</td>
+                <td class="p-4 text-gray-600">${order.Total || '$0'}</td>
+                <td class="p-4">
+                    <div class="flex items-center gap-2">
+                        <span class="${statusClass} text-white px-2 py-0.5 rounded-full text-xs capitalize hidden sm:inline-block">
+                            ${order.Status || 'unknown'}
+                        </span>
+                        <select class="p-2 border border-gray-300 rounded-lg text-sm capitalize"
+                                onchange="adminPanel.updateOrderStatus(${order.OrderID}, this.value)">
+                            ${optionsHtml}
+                        </select>
+                    </div>
+                </td>
+                <td class="p-4 text-gray-600">${order.DeliveryAddress || 'N/A'}</td>
+            </tr>
+        `;
+    }).join('');
+}
+
 }
 
 // [REMOVED] Old global click handler for #btnNewPromotion that used wrong `this`

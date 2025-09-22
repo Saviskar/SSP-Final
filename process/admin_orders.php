@@ -4,15 +4,22 @@ require_once '../src/includes/db.php';
 
 header('Content-Type: application/json');
 
-$method = $_SERVER['REQUEST_METHOD'];
-$input = json_decode(file_get_contents('php://input'), true);
-
 try {
     $db = getDB();
-    
-    switch($method) {
-        case 'GET':
-            // [CHANGED] Removed ProductsIDxQuantity column
+
+    // Normalize method + body and allow method override
+    $method = $_SERVER['REQUEST_METHOD'];
+    $raw    = file_get_contents('php://input');
+    $json   = $raw ? json_decode($raw, true) : null;
+    $input  = is_array($json) ? $json : $_POST;
+
+    if ($method === 'POST' && isset($input['_method'])) {
+        $method = strtoupper($input['_method']);
+    }
+
+    switch ($method) {
+        case 'GET': {
+            // Orders list
             $stmt = $db->query("
                 SELECT 
                     o.OrderID,
@@ -32,27 +39,49 @@ try {
                     o.OrderID, u.FullName, o.PlacedAt, o.Status, ua.AddressLine, c.CityName, pr.ProvinceName
                 ORDER BY o.OrderID
             ");
-            $result = $stmt->fetchAll();
+            $rows = $stmt->fetchAll();
 
-            // Format for UI
-            foreach($result as &$order) {
+            foreach ($rows as &$order) {
                 $order['OrderPlacedDate'] = date('d/m/Y', strtotime($order['OrderPlacedDate']));
-                $order['Total'] = '$' . number_format($order['Total'], 0);
-                // [CHANGED] This field no longer exists; ensure it’s not referenced by UI
-                // unset($order['ProductsIDxQuantity']);
+                $order['Total'] = '$' . number_format((float)$order['Total'], 0);
             }
-            
-            echo json_encode($result);
+
+            echo json_encode($rows);
             break;
-            
-        case 'PUT':
-            // Update order status
+        }
+
+        case 'PUT': {
+            // Validate and update status
+            $orderId = isset($input['orderId']) ? (int)$input['orderId'] : 0;
+            $status  = isset($input['status']) ? strtolower(trim($input['status'])) : '';
+
+            // Allowed states (adjust if you have different ones)
+            $allowed = ['pending','processing','shipped','delivered','cancelled'];
+
+            if ($orderId <= 0) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'error' => 'Invalid orderId']);
+                exit;
+            }
+            if (!in_array($status, $allowed, true)) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'error' => 'Invalid status']);
+                exit;
+            }
+
             $stmt = $db->prepare("UPDATE `Order` SET Status = ? WHERE OrderID = ?");
-            $stmt->execute([$input['status'], $input['orderId']]);
+            $stmt->execute([$status, $orderId]);
+
             echo json_encode(['success' => true]);
             break;
+        }
+
+        default: {
+            http_response_code(405);
+            echo json_encode(['success' => false, 'error' => 'Method not allowed']);
+        }
     }
-} catch(Exception $e) {
+} catch (Exception $e) {
     http_response_code(500);
-    echo json_encode(['error' => $e->getMessage()]);
+    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
 }
